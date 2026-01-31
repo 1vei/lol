@@ -26,6 +26,11 @@ yarn-error.log*
 .env
 .env*.local
 
+# password hash files
+hash.txt
+test-hash.js
+generate-hash.js
+
 # vercel
 .vercel
 
