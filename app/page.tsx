@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Chat from '@/components/Chat'
 import Browser from '@/components/Browser'
@@ -13,7 +13,7 @@ import TimeDisplay from '@/components/TimeDisplay'
 import PWAInstall from '@/components/PWAInstall'
 import { registerServiceWorker, showNotification } from '@/lib/notifications'
 
-export default function Home() {
+function HomeContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [currentPage, setCurrentPage] = useState(0)
@@ -319,5 +319,13 @@ export default function Home() {
         }
       `}</style>
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }
